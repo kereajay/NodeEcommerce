@@ -1,0 +1,13 @@
+const express=require('express')
+const {craeteblog,updateablog,findblogbyid,findallblogs,likeblogs,disliking,Deleteblog}=require('../Controller/Blog')
+const {isadmin,isseller}=require('../Middleware/sellereauth')
+const userAuth=require('../Middleware/userAuth')
+const blogRoutes=express.Router()
+blogRoutes.post('/createblog',userAuth,isadmin,craeteblog)
+blogRoutes.put('/updateblog/:blogid',userAuth,isadmin,updateablog)
+blogRoutes.get('/getblogbyid/:blogid',findblogbyid)
+blogRoutes.delete('/delete/:blogid',userAuth,isadmin,Deleteblog)
+blogRoutes.get('/getallblogs',findallblogs)
+blogRoutes.put('/likes',userAuth,likeblogs)
+blogRoutes.put('/dislike',userAuth,disliking)
+module.exports=blogRoutes

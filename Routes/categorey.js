@@ -1,0 +1,10 @@
+const express=require("express")
+const categoreyRoute=express.Router()
+const {isadmin}=require('../Middleware/sellereauth')
+const {createCategorey,updatecategorey,findcategoreybyid,getallcategorey,deletebyid}=require('../Controller/categorey')
+categoreyRoute.post('/create',isadmin,createCategorey)
+categoreyRoute.put('/update/:id',isadmin,updatecategorey)
+categoreyRoute.get('/find/:id',isadmin,findcategoreybyid)
+categoreyRoute.get('/getallcategorey',isadmin,getallcategorey)
+categoreyRoute.delete('/delete/:id',isadmin,deletebyid)
+module.exports=categoreyRoute

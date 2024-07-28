@@ -1,0 +1,10 @@
+const express=require("express")
+const BrandRoute=express.Router()
+const {isadmin}=require('../Middleware/sellereauth')
+const {createBrand,updateBrand,findBrandbyid,getallBrand,deletebyid}=require('../Controller/Brand')
+BrandRoute.post('/create',isadmin,createBrand)
+BrandRoute.put('/update/:id',isadmin,updateBrand)
+BrandRoute.get('/get/:id',isadmin,findBrandbyid)
+BrandRoute.get('/getallbrands',isadmin,getallBrand)
+BrandRoute.delete('/delete/:id',isadmin,deletebyid)
+module.exports=BrandRoute

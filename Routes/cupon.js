@@ -1,0 +1,11 @@
+const express=require('express')
+const {createcupon,updatecupon,getcuponbyid,deletecupon,getallcupons}=require('../Controller/cupon')
+const authmiddleware=require('../Middleware/userAuth')
+const {isadmin}=require('../Middleware/sellereauth')
+const cuponRouter=express.Router()
+cuponRouter.post('/create',authmiddleware,isadmin,createcupon)
+cuponRouter.put('/update/:cuponid',isadmin,updatecupon)
+cuponRouter.get('/get/:cuponid',isadmin,getcuponbyid)
+cuponRouter.delete('/delete/:cuponid',isadmin,deletecupon)
+cuponRouter.get('/getall',authmiddleware,getallcupons)
+module.exports=cuponRouter
