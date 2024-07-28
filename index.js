@@ -13,6 +13,8 @@ const { notfound, erroprHandler } = require('./Middleware/Error')
 dotenv.config();
 const app=express()
 mongoose.connect(process.env.DATABASEURI).then(()=>console.log("data base connected successfully")).catch((err)=>console.log(err))
+
+
 app.use(express.json())
 app.use(cors())
 app.use('/ecommerce/v1/user',userrouter)
@@ -21,6 +23,11 @@ app.use('/ecommerce/v1/blog',blogRoutes)
 app.use('/ecommerce/v1/categorey',categoreyRoute)
 app.use('/ecommerce/v1/brand',BrandRoute)
 app.use('/ecommerce/v1/cupon',cuponRouter)
+
+app.get('/',(req,res)=>{
+    res.sendFile(__dirname+'/index.html')
+
+})
 
 
 
